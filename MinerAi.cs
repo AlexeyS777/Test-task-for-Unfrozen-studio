@@ -164,14 +164,14 @@ public class MinerAi : MonoBehaviour
 
         if (PosIndex != 0 && PosIndex != 4) //-   -   -   -   -   -   -   -   - Ѕлижайшие персонажи игрока и противника не должны двигатьс€ из-за малого рассто€ни€
         {
-            Vector3 finpos = myPos.Position;
+            Vector3 finpos = myPos.position;
             finpos.x = pos;
 
             anim.Play("Pull"); // -  -   -   -   -   -   -   -   -   -   -   -  «апуск анимации движени€
 
-            while (myPos.localPosition.x != pos)
+            while (myPos.position.x != pos)
             {
-                myPos.Position = Vector3.MoveTowards(myPos.Position, finpos, 4 * Time.deltaTime);
+                myPos.position = Vector3.MoveTowards(myPos.position, finpos, 4 * Time.deltaTime);
                 yield return null;
             }            
         }

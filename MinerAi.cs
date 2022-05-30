@@ -39,14 +39,10 @@ public class MinerAi : MonoBehaviour
     private GameManager gmMngr;
     private AudioSource myVoice;
 
-
-    //public MinerAi defChar;
-
     private int posIndex; // --------------------------------------------------------------- »ндекс позиции персонажа
     public bool ready = true; //------------------------------------------------------------ √отовность персонажа к действию true - бездействие false - зан€т
 
     public int PosIndex { get { return posIndex; } set { posIndex = value; } } // ---------- —войство дл€ редактировани€ индокса позиции
-    //public bool Defending { get; set; }
     
     
     // Start is called before the first frame update
@@ -168,14 +164,14 @@ public class MinerAi : MonoBehaviour
 
         if (PosIndex != 0 && PosIndex != 4) //-   -   -   -   -   -   -   -   - Ѕлижайшие персонажи игрока и противника не должны двигатьс€ из-за малого рассто€ни€
         {
-            Vector3 finpos = myPos.localPosition;
+            Vector3 finpos = myPos.Position;
             finpos.x = pos;
 
             anim.Play("Pull"); // -  -   -   -   -   -   -   -   -   -   -   -  «апуск анимации движени€
 
-            while (myPos.localPosition.x != pos /*&& posIndex != 0 && posIndex != 4*/)
+            while (myPos.localPosition.x != pos)
             {
-                this.transform.localPosition = Vector3.MoveTowards(transform.localPosition, finpos, 4 * Time.deltaTime);
+                myPos.Position = Vector3.MoveTowards(myPos.Position, finpos, 4 * Time.deltaTime);
                 yield return null;
             }            
         }

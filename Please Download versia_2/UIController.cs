@@ -17,16 +17,26 @@ public class UIController : MonoBehaviour
 {
     [Header("       Add this elements from hierarchy")]
 
-    [SerializeField] private TextMeshProUGUI roundText = null;
-
     [SerializeField] private Image playerImage = null;
-    [SerializeField] private Image enemyImage = null;
+    [SerializeField] private GameObject playerAtckIcon = null;
+    [SerializeField] private GameObject playerHealthIcon = null;
 
+    [SerializeField] private TextMeshProUGUI playerName_txt = null;
     [SerializeField] private TextMeshProUGUI playerAttack_txt = null;
     [SerializeField] private TextMeshProUGUI playerHealth_txt = null;
+
+
+
+    [SerializeField] private Image enemyImage = null;
+    [SerializeField] private GameObject enemyAtckIcon = null;
+    [SerializeField] private GameObject enemyHealthIcon = null;
+
+    [SerializeField] private TextMeshProUGUI enemyName_txt = null;
     [SerializeField] private TextMeshProUGUI enemyAttack_txt = null;
     [SerializeField] private TextMeshProUGUI enemyHealth_txt = null;
 
+
+    [SerializeField] private TextMeshProUGUI roundText = null;
     [SerializeField] private SpriteRenderer Shadow = null;
     [SerializeField] private GameObject[] UiButtons = null;
     
@@ -43,6 +53,9 @@ public class UIController : MonoBehaviour
         {
             playerImage.sprite = icon;
             playerImage.gameObject.SetActive(true);
+            playerAtckIcon.SetActive(true);
+            playerHealthIcon.SetActive(true);
+            playerName_txt.text = (charParam["Name"] < 1) ? "Miner" : "Elite Miner";
             playerAttack_txt.text = charParam["Attack_Min"] + "-" + charParam["Attack_Max"];
             playerHealth_txt.text = charParam["Health"] + "/" + charParam["Health_Max"];
         }
@@ -50,29 +63,44 @@ public class UIController : MonoBehaviour
         {
             enemyImage.sprite = icon;
             enemyImage.gameObject.SetActive(true);
+            enemyAtckIcon.SetActive(true);
+            enemyHealthIcon.SetActive(true);
+            enemyName_txt.text = (charParam["Name"] < 1) ? "Miner" : "Elite Miner";
             enemyAttack_txt.text = charParam["Attack_Min"] + "-" + charParam["Attack_Max"];
             enemyHealth_txt.text = charParam["Health"] + "/" + charParam["Health_Max"];
         }        
     }
 
-    public void HideEnemyCharacterUI(Sprite icon, Dictionary<string, int> charParam)
+    public void HideEnemyCharacterUI()
     {
         enemyImage.gameObject.SetActive(false);
+        enemyAtckIcon.SetActive(false);
+        enemyHealthIcon.SetActive(false);
         enemyImage.sprite = null;
+        enemyName_txt.text = "";
         enemyAttack_txt.text = "";
         enemyHealth_txt.text = "";
     }
 
     public void HideCharUI() 
-    {
-        enemyImage.gameObject.SetActive(false);
+    {        
         playerImage.gameObject.SetActive(false);
-        playerImage.sprite = null;
-        enemyImage.sprite = null;
+        playerAtckIcon.SetActive(false);
+        playerHealthIcon.SetActive(false);
+        playerImage.sprite = null;        
 
+        playerName_txt.text = "";
         playerAttack_txt.text = "";
         playerHealth_txt.text = "";
 
+
+
+        enemyImage.gameObject.SetActive(false);
+        enemyAtckIcon.SetActive(false);
+        enemyHealthIcon.SetActive(false);
+        enemyImage.sprite = null;
+
+        enemyName_txt.text = "";
         enemyAttack_txt.text = "";
         enemyHealth_txt.text = "";
     }

@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviour
             defDistance = -2.5f;
         }
 
-        atkChar.EditLayerOrder(15); // -   -   -   -   -   -   -   -   -   -   - Настраиваем  sorting layer order для корректного отображения персонажей
+        atkChar.EditLayerOrder(16); // -   -   -   -   -   -   -   -   -   -   - Setting up the sorting layer order for the correct display of characters
         defChar.EditLayerOrder(15);
         StartCoroutine(uiCntrl.ShowShadow(true));// -   -   -   -   -   -   -    Display shadow of battle.
         yield return new WaitForSeconds(1f);

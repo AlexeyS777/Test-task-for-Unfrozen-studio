@@ -81,7 +81,6 @@ public class MinerAi : MonoBehaviour
         blood.GetComponent<SkeletonMecanim>().Initialize(true);
         myParam = GetComponent<CharParam>();
         myParam.Inicializing(elite);
-
         myIcon = (elite) ? charIcons[0] : charIcons[1];
     }
 
@@ -108,7 +107,7 @@ public class MinerAi : MonoBehaviour
         if (posIndex > 3 && GameManager.playerTurn && GameManager.turnStart)
         {
             enemyChoiceEffect.SetActive(false);
-            uiCntrl.HideEnemyCharacterUI(myIcon, myParam.MyParameters);
+            uiCntrl.HideEnemyCharacterUI();
         }
     }
 

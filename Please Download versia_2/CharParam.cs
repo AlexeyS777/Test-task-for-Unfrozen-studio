@@ -19,6 +19,8 @@ public class CharParam : MonoBehaviour
     {
         int maxHealth = (elite) ? Random.Range(55, 80) : Random.Range(30, 54);
 
+        myParam.Add("Name", (elite) ? 1 : 0); // ---------------------------------------------------- 0 - base miner 1 - elite miner
+
         myParam.Add("Health_Max", maxHealth);
         myParam.Add("Health", myParam["Health_Max"]);
 

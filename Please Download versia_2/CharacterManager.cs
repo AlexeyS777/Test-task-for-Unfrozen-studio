@@ -44,7 +44,7 @@ public class CharacterManager : MonoBehaviour
 
 
         MeshRenderer charMesh = character.GetComponent<MeshRenderer>();
-        charMesh.sortingOrder = (numOfPos < 4) ? numOfPos + 3 : numOfPos - 1; //--- Sorting the characters by layers, for proper display.      
+        charMesh.sortingOrder = numOfPos; //--------------------------------------- Sorting the characters by layers, for proper display.      
 
         Vector3 pos = Vector3.zero;
 

@@ -72,6 +72,7 @@ public class MinerAi : MonoBehaviour
         uiCntrl = GameObject.Find("GameManager").GetComponent<UIController>();
         myPos = GetComponent<Transform>();
         anim = GetComponent<Animator>();
+        anim.SetFloat("Idle_speed", Random.Range(0.5f, 1.3f));
     }
 
     public void BloodEffectInitialize(bool elite)

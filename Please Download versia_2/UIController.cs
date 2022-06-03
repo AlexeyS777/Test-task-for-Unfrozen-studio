@@ -17,6 +17,8 @@ public class UIController : MonoBehaviour
 {
     [Header("       Add this elements from hierarchy")]
 
+    [SerializeField] private Animator camera_Anim = null;
+ 
     [SerializeField] private Image playerImage = null;
     [SerializeField] private GameObject playerAtckIcon = null;
     [SerializeField] private GameObject playerHealthIcon = null;
@@ -39,7 +41,20 @@ public class UIController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI roundText = null;
     [SerializeField] private SpriteRenderer Shadow = null;
     [SerializeField] private GameObject[] UiButtons = null;
-    
+
+
+
+
+    private void Awake()
+    {
+        GameManager.Camera_Damage_Effect += this.CameraDamageEffect;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Camera_Damage_Effect -= this.CameraDamageEffect;
+    }
+
 
     //=============================================================================================
 
@@ -135,6 +150,11 @@ public class UIController : MonoBehaviour
     //                                  Another UI Settings
 
     //=============================================================================================
+
+    private void CameraDamageEffect()
+    {
+        camera_Anim.Play("Camera_Damage");
+    }
 
     public void SetRoundCounter(int value)
     {

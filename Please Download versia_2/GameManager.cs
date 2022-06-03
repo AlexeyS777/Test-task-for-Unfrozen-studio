@@ -17,8 +17,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    //[SerializeField] private AudioSource iratusVoice = null;
-    //[SerializeField] private AudioClip[] voice = null;
+    public delegate void GUIEffects(); // ----------------------------------------------- How much benefit I got working on this assignment! I remembered the delegates! ^_^ 
+    public static event GUIEffects Camera_Damage_Effect; //                               True, I didn't use them in the best way here...
+
+    [SerializeField] private AudioSource iratusVoice = null;
+    [SerializeField] private AudioClip[] voice = null;
 
     private CharacterManager charMngr;
     private UIController uiCntrl;
@@ -226,7 +229,12 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSeconds(1f);
-                
+
+        int i = Random.Range(0, 2);
+        if(!iratusVoice.isPlaying && atkChar.PosIndex < 4 && i > 0) iratusVoice.PlayOneShot(voice[Random.Range(0, 7)]);
+
+        if (Camera_Damage_Effect != null) Camera_Damage_Effect();
+        
         atkChar.RandomAttack(); // -   -   -   -   -   -   -   -   -   -   -     Attack
 
         while (!atkChar.ready && !defChar.ready)
@@ -254,16 +262,14 @@ public class GameManager : MonoBehaviour
 
         if (defChar.MyParameters()["Health"] < 1)
         {
-            /*if (defChar.PosIndex < 4) //-   -   -   -   -   -   -   -   -   -   Not work, because Iratus voice files is very quiet
+            if (defChar.PosIndex < 4 && !iratusVoice.isPlaying) //-   -   -   -   -   -   -   -   -   -   Not work, because Iratus voice files is very quiet
             {
-                Debug.Log("Voice");
-                iratusVoice.PlayOneShot(voice[Random.Range(0, 4)]);
+                iratusVoice.PlayOneShot(voice[Random.Range(13, voice.Length)]);
             }
-            else
+            else if(!iratusVoice.isPlaying)
             {
-                Debug.Log("Voice");
-                iratusVoice.PlayOneShot(voice[Random.Range(4, voice.Length)]);
-            }*/
+                iratusVoice.PlayOneShot(voice[Random.Range(7, 13)]);
+            }
 
             defChar.Death();
         }
